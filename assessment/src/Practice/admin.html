@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <style>
+         body{
+                height: 100vh;
+                width: 100vw;
+                margin: 0px;
+                background-image: linear-gradient(rgba(141, 248, 120, 0.5),rgba(141, 248, 120, 0.5)),url(food\ banner.png);
+                background-position: center;
+                background-size: cover;
+                position: relative;
+                color: #fff;
+            }
+    </style>
+</head>
+<body>
+<div class="container">
+   <h1>Admin Login</h1>
+   <br>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email">
+    </div>
+    <div class="form-group">
+        <label for="pass">Password:</label>
+        <input type="password" class="form-control" id="pass">
+    </div>
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+        <label class="custom-control-label" for="customSwitch1">Keep me Logged In</label>
+    </div>
+      <button type="submit" id="btnLogin" class="btn btn-primary">Login</button>
+</div>
+</body>
+
+
+  <script src = "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js"></script>
+   <script>
+    
+    var config = {
+      apiKey: "AIzaSyBYjgxoJ34pGErycIRbCxqMJBREnstmIpc",
+      authDomain: "retake-assessment.firebaseapp.com",
+      databaseURL: "https://retake-assessment-default-rtdb.asia-southeast1.firebaseio.com",
+      projectId: "retake-assessment",
+      storageBucket: "retake-assessment.appspot.com",
+      messagingSenderId: "352369680811",
+     
+    };
+  
+    // Initialize Firebase
+    firebase.initializeApp(Config);
+
+    
+
+  var auth = firebase.auth();
+  var email     = document.getElementById('email');
+  var pass      = document.getElementById('pass');
+  var btnLogin  = document.getElementById('btnLogin');
+
+  btnLogin.addEventListener('click', funcLogin);
+ 
+
+  function funcLogin() {
+    auth.signInWithEmailAndPassword(email.value, pass.value)
+        .then(function(data){
+            console.log(data);
+            window.location="account.html";
+            alert("Login as Admin Successfully");
+        }).catch(function(err){
+            alert(err)
+        })
+  }
+auth.onAuthStateChanged(function(user){
+        if(user) {
+            btnLogout.classList.remove('hidden');
+            btnLogin.classList.add('hidden');
+            
+        } else {
+            btnLogout.classList.add('hidden');
+            btnLogin.classList.remove('hidden');
+        }
+  })
+//   function funcLogout() {
+//     auth.signOut().then(function(){
+//         alert("Logout as Admin Successfully")
+//     }).catch(function(err){
+//         alert(err)
+//     })
+//   }
+
+ </script>
+</html>
+
+

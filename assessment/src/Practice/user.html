@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User Profile</title>
+    <style>
+    label{
+        display: inline-block; 
+        width: 80px;
+    }  
+    input,select{
+        width:120px;
+    }
+        body{
+            height: 100vh;
+            width: 100vw;
+            margin: 0px;
+            background-image: linear-gradient(rgba(141, 248, 120, 0.5),rgba(141, 248, 120, 0.5)),url(food\ banner.png);
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <label>First Name</label> <input id="fnamebox" type="text"> <br><br>
+    <label>Last Name</label> <input id="lnamebox" type="text"> <br><br>
+    <label>Email</label> <input id="embox" type="text"> <br><br>
+    <label>Contact</label> <input id="conbox" type="text"> <br><br>
+    <label>Username</label> <input id="usebox" type="text"> <br><br>
+
+<!-- 
+    <label>Name</label> <input id="Namebox" type="text"> <br><br>
+    <label>RollNo</label> <input id="Rollbox" type="text"> <br><br>
+    <label>Section</label> <input id="Secbox" type="text"> <br><br>
+    <label>Gender</label> 
+    <select id="Genbox">
+        <option value="Male"> Male</option>
+        <option value="Female"> Female</option>
+    </select> 
+-->
+
+    <hr>
+    <button id="Insbtn">INSERT</button>
+    <button id="Selbtn">SELECT</button>
+    <button id="Updbtn">UPDATE</button>
+    <button id="Delbtn">DELETE</button>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
+        
+       
+        const firebaseConfig = {
+          apiKey: "AIzaSyBYjgxoJ34pGErycIRbCxqMJBREnstmIpc",
+          authDomain: "retake-assessment.firebaseapp.com",
+          databaseURL: "https://retake-assessment-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "retake-assessment",
+          storageBucket: "retake-assessment.appspot.com",
+          messagingSenderId: "352369680811",
+          appId: "1:352369680811:web:d81867ea374d7a2c88f2ee",
+          measurementId: "G-DGX08LJJ9W"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    
+        import {getDatabase, ref, set, child, get,update, remove } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-database.js";
+        
+        const db = getDatabase();
+
+        var fname = document.getElementById("fnamebox");
+        var lname = document.getElementById("lnamebox");
+        var email = document.getElementById("embox");
+        var contact = document.getElementById("conbox");
+        var username = document.getElementById("usebox");
+
+            // var namebox = document.getElementById("Namebox");
+            // var rollbox = document.getElementById("Rollbox");
+            // var secbox = document.getElementById("Secbox");
+            // var genbox = document.getElementById("Genbox");
+
+            var insBtn = document.getElementById("Insbtn");
+            var selBtn = document.getElementById("Selbtn");
+            var updBtn = document.getElementById("Updbtn");
+            var delBtn = document.getElementById("Delbtn");
+
+            function InsertData(){
+                set(ref(db, "UsersList/" + username.value),{
+                    fname: fname.value,
+                    lname: lname.value,
+                    contact: contact.value,
+                    email: email.value,
+                    username: username.value
+                })
+                .then(()=>{
+                    alert("The data stored successfully!");
+                })
+                .catch((error)=>{
+                    alert("error"+ error);
+                })
+            }
+            function SelectData(){
+                const dbref = ref(db);
+
+                get(child(dbref,"UsersList/" + username.value)).then((snapshot)=>{
+                    if(snapshot.exists()){
+                        fname.value = snapshot.val().fname;
+                        lname.value = snapshot.val().lname;
+                        email.value = snapshot.val().email;
+                        contact.value = snapshot.val().contact;
+                    }
+                    else{
+                        alert("No data found");
+                    }
+                })
+                .catch((error)=>{
+                    alert("error"+ error);
+                });
+            }
+            function UpdateData(){
+                update(ref(db, "UsersList/"+username.value),{
+                    fname: fname.value,
+                    lname: lname.value,
+                    contact: contact.value,
+                    email: email.value
+                })
+                .then(()=>{
+                    alert("Updated Sucessfully!");
+                })
+                .catch((error)=>{
+                    alert("error"+ error);
+                })
+            }
+            function DeleteData(){
+                remove(ref(db, "UsersList/"+username.value),{
+                })
+                .then(()=>{
+                    alert("Data Removed");
+                })
+                .catch((error)=>{
+                    alert("error"+ error);
+                })
+            }
+            insBtn.addEventListener('click', InsertData);
+            selBtn.addEventListener('click', SelectData);
+            updBtn.addEventListener('click', UpdateData);
+            delBtn.addEventListener('click', DeleteData);
+      </script>
+</body>
+</html>

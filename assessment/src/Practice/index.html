@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">  
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <title>Mangan Da Kita Register</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section class="header">
+            <nav>
+                <a href="landing.html"><img src="LOGO.png"></a>
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="">HOME</a></li>
+                        <li><a href="contact.html">CONTACT US</a></li>
+                        <li><a href="video.html">CLICK ME</a></li>
+                        <li><a href="register.html"class="badge badge-secondary py-1 w-100">REGISTER</a></li>
+                        <li><a href="technology.html"class="badge badge-secondary py-1 w-100">TECHNOLOGY STACK</a></li>
+                        <li><a href="admin.html"class="badge badge-secondary py-1 w-100">ADMIN</a></li>
+                    </ul>
+                </div>
+            </nav>      
+        </section>
+        <section class="login">
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" placeholder="Username" id="userInpt" class="form-control mb-3">                
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Password" id="passInpt" class="form-control mb-3" name="psw" required>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                    <label class="custom-control-label" for="customSwitch1">Keep me Logged In</label>
+                </div>
+                <button type="text" id="subbtn" class="btn btn-outline-primary mb-3 w-100">Login</button>
+                <a href="register.html" class="badge badge-secondary py-1 w-100">Create Account</a>
+              </div>     
+
+        </section>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
+            
+           
+            const firebaseConfig = {
+              apiKey: "AIzaSyBYjgxoJ34pGErycIRbCxqMJBREnstmIpc",
+              authDomain: "retake-assessment.firebaseapp.com",
+              databaseURL: "https://retake-assessment-default-rtdb.asia-southeast1.firebasedatabase.app",
+              projectId: "retake-assessment",
+              storageBucket: "retake-assessment.appspot.com",
+              messagingSenderId: "352369680811",
+              appId: "1:352369680811:web:d81867ea374d7a2c88f2ee",
+              measurementId: "G-DGX08LJJ9W"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+        
+            import {getDatabase, ref, set, child, get,update, remove } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-database.js";
+            
+            const db = getDatabase();
+
+            const username = document.getElementById('userInpt');
+            const password = document.getElementById('passInpt');
+            const submit = document.getElementById('subbtn');
+
+            function EmptySpaces(str){
+                return str === null || str.match (/^ *$/) !==null;
+            }      
+            function Validate(){
+                let userregis = /^[a-zA-Z0-9]{5,}$/;
+
+                if(EmptySpaces(username.value) || EmptySpaces(password.value)){
+                    alert("Do not leave any empty field");
+                    return false;
+                }
+                if(!userregis.test(username.value)){
+                    alert("Username can only be alphanumer\n username must be atleast 5 characters \n username cannot containe less than 5 characters");
+                    return false;
+                }
+                    return true;
+                }
+            function AuthenticateUser(){
+            if(!Validate()){
+                return;
+            }
+                const dbRef = ref(db);
+                get(child(dbRef,"UsersList/"+ username.value)).then((snapshot)=>{
+                    if(snapshot.exists()){
+                        alert("User Successfully Logged In")
+                        let dbpass = decPassword(snapshot.val().password);
+                        if (dbpass == password.value){
+                            login(snapshot.val());
+                        }
+                        else(
+                            alert("User Does Not Exist")
+                        )
+                        }else{
+                            alert("Username or Password Invalid")
+                    }
+                });
+            }
+            function decPassword(dbpass){
+                var pass12 = CryptoJS.AES.decrypt(dbpass, password.value);
+                return pass12.toString(CryptoJS.enc.Utf8);
+            }
+            function login(user){
+                let keepLoggedIn = document.getElementById('customSwitch1').checked;
+
+                if(keepLoggedIn){
+                    sessionStorage.setItem('user', JSON.stringify(user));
+                    window.location="account.html";
+                }
+                else{
+                    localStorage.setItem('keepLoggedIn', 'yes');
+                    localStorage.setItem('user', JSON.stringify(user));
+                    window.location="account.html";
+                }
+            }
+            submit.addEventListener('click', AuthenticateUser);
+        </script>
+    </body>
+</html>

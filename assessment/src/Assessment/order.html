@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mangan da Kita Order</title>
+
+    <link rel="stylesheet" href="order.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       
+            <a class="navbar" style="padding: 20px;" href="Register.html">
+              <img src="LOGO.png" alt="Mangan da Kita" width="50" height="50">
+            </a>
+      
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class="nav-item ">
+                <a class="nav-link" href="Home.html">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="Contacts.html">Contact Information</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="Services.html">Services</a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Order</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="Technology Stack.html">Technology Stack</a>
+              </li>
+
+              
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item mx-1">
+                    <a id="userlink" class="nav-link " aria-current="page" href="#">Username</a>
+                  </li>
+
+                  <li class="nav-item mx-1 ">
+                      <a id="signoutlink" class="nav-link " aria-current="page" href="">Sign Out</a>
+                    </li>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+
+      
+
+<!---------------------------////BANNER///------------------------------->
+      <div class="banner mb-6">
+
+        <img src="Banner.png" class="img-fluid" alt="Banner">
+
+      </div>
+
+<!------------------------////MENU ORDERS////---------------------------------->
+
+      <section class="container content-section">
+      <h3 class="section-header mb-3">MANGAN DA KITA MENU</h3>
+      <div class="ven"  style="padding-left: 30%; padding-right: 30%">
+      <table class="table " style="padding-left: 30%">
+          <thead>
+            <tr>
+              <th scope="col">CATEGORY</th>
+              <th scope="col"> </th>
+              <th scope="col">PRICE</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+              
+            <tr>
+              <th scope="row">SEAFOOD</th>
+              <td>Sinigang na Hipon</td>
+              <td>250.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row"> </th>
+              <td>Sinugbang Panga</td>
+              <td>450.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row"> </th>
+              <td>Piniritong Hipon</td>
+              <td>500.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row">CHICKEN</th>
+              <td>Adobo</td>
+              <td>250.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row"> </th>
+              <td>Chicken Curry</td>
+              <td>260.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row"> </th>
+              <td>Sinigang na Manok</td>
+              <td>400.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row">PORK</th>
+              <td>Adobo</td>
+              <td>200.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row"> </th>
+              <td>Pork Steak</td>
+              <td>150.00</td>
+            </tr>
+            <tr>
+              <th scope="row"> </th>
+              <td>Humba</td>
+              <td>300.00</td>
+            </tr>
+             
+            <tr>
+              <th scope="row">RICE</th>
+              <td>Plain Rice</td>
+              <td>150.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row"> </th>
+              <td>Brown Rice</td>
+              <td>300.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row"> </th>
+              <td>Fried Rice</td>
+              <td>200.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row">DRINKS</th>
+              <td>Coke</td>
+              <td>80.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row"> </th>
+              <td>Juice Pitcher</td>
+              <td>150.00</td>
+            </tr>
+
+            <tr>
+              <th scope="row"> </th>
+              <td>Coffee</td>
+              <td>100.00</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+      
+<!------------------------//// ORDER Form////---------------------------------->
+   
+  <section class="container content-section">
+    <h3 class="section-header mb-3">ORDER FORM</h3>
+
+    <div class="container-xxl" style="padding-inline: 25%; ">
+
+    <div class="row mb-3"> 
+          <div class="col-md-6">
+            <label for="validationDefault01" class="form-label">Date</label>
+            <input type="date" class="form-control" id="dateInput" required>
+          </div>
+
+          <div class="col-md-6">
+            <label for="validationDefault04" class="form-label">Order Type</label>
+            <select class="form-select" id="orderTypeInput" required>
+                <option selected disabled value="">Choose...</option>
+                <option value ="Delivery">Delivery</option>
+                <option value = "Pickup">Pick-up</option>
+            </select>
+          </div>
+    </div>
+
+    <div class="row mb-3"> 
+          <div class="col-md-12">
+            <label for="validationDefault02" class="form-label">Customer's Name</label>
+            <input type="text" class="form-control" id="cNameInput"  required>
+          </div>
+
+          <div class="col-md-12">
+            <label for="validationDefault05" class="form-label">Address</label>
+            <input type="text" class="form-control" id="AdrsInput" required>
+          </div>
+    </div>
+
+        <div class="row mb-3"> 
+          <div class="col-md-6">
+            <label for="validationDefault04" class="form-label">Item</label>
+            <select class="form-select" id="Order1" required>
+                <option selected disabled value="">Choose...</option>
+                <option value ="Sinigang na Hipon">Sinigang na Hipon</option>
+                <option value = "Sinugbang Panga">Sinugbang Panga</option>
+                <option value ="Piniritong Hipon">Piniritong Hipon</option>
+                <option value = "Chicken Adobo">Chicken Adobo</option>
+                <option value = "Chicken Curry">Chicken Curry</option>
+                <option value = "Sinbawang Manok">Sinbawang Manok</option>
+                <option value = "Pork Adobo">Pork Adobo</option>
+                <option value = "Pork Steak">Pork Steak</option>
+                <option value ="Humba">Humba</option>
+                <option value="Plain Rice">Plain Rice</option>
+                <option value="Brown Rice">Brown Rice</option>
+                <option value="Fried Rice">Fried Rice</option>
+                <option value="Coke">Coke</option>
+                <option value="Juice Pitcher">Juice Pitcher</option>
+                <option value="Coffee">Coffee</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault04" class="form-label">Quantity</label>
+            <select class="form-select" id="Quantity1" required>
+                <option selected disabled value="">Choose...</option>
+                <option value ="1">1</option>
+                <option value = "2">2</option>
+                <option value = "3">3</option>
+                <option value = "4">4</option>
+                <option value = "5">5</option>
+            </select>
+          </div>
+    </div>
+
+    <div class="row mb-3"> 
+      <div class="col-md-6">
+        <label for="validationDefault04" class="form-label">Item</label>
+        <select class="form-select" id="Order2" >
+            <option selected disabled value="">Choose...</option>
+            <option value ="Sinigang na Hipon">Sinigang na Hipon</option>
+            <option value = "Sinugbang Panga">Sinugbang Panga</option>
+            <option value ="Piniritong Hipon">Pinirting Hipon</option>
+            <option value = "Chicken Adobo">Chicken Adobo</option>
+            <option value = "Chicken Curry">Chicken Curry</option>
+            <option value = "Sinabawang Manok">Sinabawang Manok</option>
+            <option value = "Pork Adobo">Pork Adobo</option>
+            <option value = "Pork Steak">Pork Steak</option>
+            <option value = "Humba">Humba</option>
+            <option value="Plain Rice">Plain Rice</option>
+            <option value="Brown Rice">Brown Rice</option>
+            <option value="Fried Rice">Fried Rice</option>
+            <option value="Coke">Coke</option>
+            <option value="Juice Pitcher">Juice Pitcher</option>
+            <option value="Coffee">Coffee</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="validationDefault04" class="form-label">Quantity</label>
+        <select class="form-select" id="Quantity2" >
+            <option selected disabled value="">Choose...</option>
+            <option value ="1">1</option>
+            <option value = "2">2</option>
+            <option value = "3">3</option>
+            <option value = "4">4</option>
+            <option value = "5">5</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row mb-3"> 
+      
+      <div class="col-md-6">
+        <label for="validationDefault04" class="form-label">Item</label>
+        <select class="form-select" id="Order3" >
+            <option selected disabled value="">Choose...</option>
+            <option value ="Sinigang na Hipon">Sinigang na Hipon</option>
+            <option value = "Sinugbang Panga">Sinugbang Panga</option>
+            <option value ="Piniritong Hipon">Piniritong Hipon</option>
+            <option value = "Chicken Adobo">Chicken Adobo</option>
+            <option value = "Chicken Curry">Chicken Curry</option>
+            <option value ="Sinabawang Manok">Sinabawang Manok</option>
+            <option value = "Pork Adobo">Pork Adobo</option>
+            <option value = "Pork Steak">Pork Steak</option>
+            <option value ="Humba">Humba</option>
+            <option value="Plain Rice">Plain Rice</option>
+            <option value="Brown Rice">Brown Rice</option>
+            <option value="Fried Rice">Fried Rice</option>
+            <option value="Coke">Coke</option>
+            <option value="Juice Pitcher">Juice Pitcher</option>
+            <option value="Coffee">Coffee</option>
+        </select>
+        
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault04" class="form-label">Quantity</label>
+        <select class="form-select" id="Quantity3" >
+            <option selected disabled value="">Choose...</option>
+            <option value ="1">1</option>
+            <option value = "2">2</option>
+            <option value = "3">3</option>
+            <option value = "4">4</option>
+            <option value = "5">5</option>
+        </select>
+      </div>
+  </div>
+
+    <button class="btn btn-success w-100 mb-3" type="submit" id="place-order">PURCHASE</button>
+  </section>
+      
+  <script type="module">
+    // Import the functions you need from the SDKs you need//
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
+    
+   
+    const firebaseConfig = {
+      apiKey: "AIzaSyBYjgxoJ34pGErycIRbCxqMJBREnstmIpc",
+      authDomain: "retake-assessment.firebaseapp.com",
+      databaseURL: "https://retake-assessment-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "retake-assessment",
+      storageBucket: "retake-assessment.appspot.com",
+      messagingSenderId: "352369680811",
+      appId: "1:352369680811:web:d81867ea374d7a2c88f2ee",
+      measurementId: "G-DGX08LJJ9W"
+    };
+  
+    // Initialize Firebase//
+    const app = initializeApp(firebaseConfig);
+
+    import {getDatabase, ref, set, child, get,update, remove } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-database.js";
+    
+    const db = getDatabase();
+
+
+            const date = document.getElementById('dateInput');
+            const orderType = document.getElementById('orderTypeInput');
+            const customerName = document.getElementById('cNameInput');
+            const address = document.getElementById('AdrsInput');
+            
+             const o1 = document.getElementById('Order1');
+             const q1 = document.getElementById('Quantity1');
+             const o2 = document.getElementById('Order2');
+             const q2 = document.getElementById('Quantity2');
+             const o3 = document.getElementById('Order3');
+             const q3 = document.getElementById('Quantity3');
+
+             const placeorder = document.getElementById('place-order');
+
+        
+        //==============ADD NEW ORDER =================//
+
+        function InsertData(){
+          function isEmptyOrSpaces(str){
+            return str === null || str.match(/^ *$/) !==null;
+        }           
+          set(ref(db, "NewOrders/"+ customerName.value),{
+              Date: date.value,
+              // OrderNo: order.value,
+              OrderType: orderType.value,
+              CustomersName: customerName.value,
+              CustomerAddress: address.value,
+              Order1 : o1.value,
+              Order2 : o2.value,
+              Order3 : o3.value,
+              Quantity1 : q1.value,
+              Quantity2 : q2.value,
+              Quantity3 : q3.value,
+              
+
+          })
+
+          .then(()=>{
+              alert("Placed Order Successfully!");
+          })
+          .catch((error)=>{
+              alert("error"+ error);
+          })
+          
+      
+    }
+//===========///VALIDATE///=============================
+function getUsername(){
+                   
+                   let keepLoggedIn = localStorage.getItem("keepLoggedIn")
+
+                   if(keepLoggedIn =="yes"){
+                       currentUser = JSON.parse(localStorage.getItem('user'));
+                       //getting the item back converting to JSON object
+                   }
+
+                   else{
+                       currentUser = JSON.parse(sessionStorage.getItem('user'));
+                       //retrive data from session storage
+                   }
+
+       }
+
+       function SignOut(){
+           sessionStorage.removeItem('user');
+           localStorage.removeItem('user');
+           localStorage.removeItem('keepLoggedIn');
+           window.location = "Home.html";
+       }
+
+       //WINDOWS LOAD
+
+       window.onload = function(){
+               getUsername();
+               if(currentUser == null){
+                   userlink.innerText="Create New Account";
+                   userlink.classList.replace("nav-link","btn");
+                   userlink.classList.add("btn-primary");
+                   userlink.href = "Register.html";
+
+                   signoutlink.innerText="Login";
+                   signoutlink.classList.replace("nav-link","btn");
+                   signoutlink.classList.add("btn-success");
+                   signoutlink.href = "Login.html";
+               }
+               else{
+                   userlink.innerText = currentUser.username;
+                   header.innerText = "Welcome " + currentUser.fname;
+                   userlink.classList.replace("nav-link","btn");
+                   userlink.classList.add("btn-primary");
+                   userlink.href = "#";
+
+                   signoutlink.innerText = "Sign Out";
+                   signoutlink.classList.replace("nav-link","btn");
+                   signoutlink.classList.add("btn-success");
+                   signoutlink.href = "javascript:Signout()";
+                   
+               }
+           }
+         
+          
+// ==========/ //PLACE ORDER/// =========================
+
+          placeorder.addEventListener('click', InsertData);
+
+
+      </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        
+
+        <footer class="footer">
+          <div>
+            <img src="Firebase.png" class="img-fluid" alt="logo" style="width: 200px;">
+            <img src="html5-logo-31816.png" class="img-fluid" alt="logo" style="width: 200px;">
+          </div>
+        </footer>
+              
+</div>
+</footer>
+</body>
+</html>

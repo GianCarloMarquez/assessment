@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">  
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <title>Mangan Da Kita Account</title>
+        <style>
+            body{
+                height: 100vh;
+                width: 100vw;
+                margin: 0px;
+                background-image: linear-gradient(rgba(141, 248, 120, 0.5),rgba(141, 248, 120, 0.5)),url(food\ banner.png);
+                background-position: center;
+                background-size: cover;
+                position: relative;
+                color: #fff;
+            }
+            nav{
+                display: flex;
+                padding: 2% 6%;
+                justify-content: space-between;
+                align-items: center;
+            }
+            nav img{
+                width: 150px;
+            }
+            .nav-links{
+                text-align: right;
+            }
+            .nav-links ul li{
+                list-style: none;
+                display: inline-block;
+                padding: 8px 12px;
+                position: relative;
+            }
+            .nav-links ul li a{
+                color: #fff;
+                text-decoration: none;
+                font-size: 13px;
+            }
+            .nav-links ul li::after{
+                content: '';
+                width: 100%;
+                height: 2px;
+                background: #f4433f;
+                display: block;
+                margin: auto;
+            }
+        </style>
+    </head>
+    <body>
+      <section class="header">
+        <nav>
+            <a href="landing.html"><img src="LOGO.png"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="contact.html">CONTACT US</a></li>
+                    <li><a href="video.html">CLICK ME</a></li>
+                    <li><a href="menu.html">MENU</a></li>
+                    <li><a href="technology.html">TECHNOLOGY STACK</a></li>
+                    <li class="nav-item"><a id="userlink" class="nav-link" href="user.html">USERNAME</a></li>
+                    <li class="nav-item1"><a id="signoutlink" class="nav-link">LOGOUT</a></li>
+                </ul>
+            </div>
+        </nav>  
+    </section>
+    <script>
+
+        let userlink = document.getElementById('userlink');
+        let signoutlink = document.getElementById('signoutlink');
+        let currentUser = null;
+
+        function getUsername(){ 
+            let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+
+            if(keepLoggedIn == "yes"){
+                currentUser = JSON.parse(localStorage.getItem("user"));
+            }
+            else{       
+                currentUser = JSON.parse(sessionStorage.getItem("user"));
+            }
+        }
+        function signout(){
+            sessionStorage.removeItem("userlink");
+            localStorage.removeItem("userlink");
+            localStorage.removeItem("keepLoggedIn");
+            window.location = "index.html";
+        }
+        window.onload = function(){
+            getUsername();
+            if(currentUser==null){
+                userlink.innerText="Create New Account";
+                userlink.classList.replace=("nav-item","btn");
+                userlink.classList.add("btn-primary");
+                userlink.href = "register.html";
+
+                signoutlink.innerText = "Login";
+                signoutlink.classList.replace("nav-item","btn");
+                signoutlink.classList.add("btn-success");
+                signoutlink.href="index.html";
+            }
+            else{
+                userlink.innerText=currentUser.username;
+                header.innerText = "welcome" + currentUser.fullname;
+                userlink.classList.replace=("nav-item","btn");
+                userlink.classList.remove("btn-primary");
+                userlink.href = "#";
+
+                signoutlink.innerText = "Sign Out";
+                signoutlink.classList.replace("nav-item1","btn");
+                signoutlink.classList.remove("btn-success");
+                signoutlink.href="javascript:signout(index.html)";
+            }
+        }
+        
+    </script>
+    </body>
+</html>

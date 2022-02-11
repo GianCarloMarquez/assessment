@@ -1,0 +1,39 @@
+.nav-menu {
+    background-color: rgb(250, 210, 123);
+    color: #ffffff;
+  }
+  
+  .banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .nav-link:hover {
+    background: rgba(235, 191, 96, 0.644);
+    color: #f06969;
+    transition: 250ms;
+  }
+  
+  
+  .form{
+    padding-left: 100px;
+  }
+  
+  .center {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    }
+  
+    .video{
+      margin: auto;
+      width: 60%;
+      padding: 10px;
+    }
+  
+    .footer{
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: center;
+    }

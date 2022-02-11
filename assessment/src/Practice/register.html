@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account in Mangan Da Kita</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body{
+            display: flex;  
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            margin: 0px;
+            background-image: linear-gradient(rgba(141, 248, 120, 0.5),rgba(141, 248, 120, 0.5)),url(food\ banner.png);
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+</nav>
+<div class="mb-5">
+    <h3 class="mb=3">Create Account</h3>
+    <input type="text" placeholder="First Name" id="fnameInpt" class="form-control mb-3">
+    <input type="text" placeholder="Last Name" id="lnameInpt" class="form-control mb-3">
+    <input type="text" placeholder="Email" id="emailInpt" class="form-control mb-3">
+    <input type="number" placeholder="Contact" id="contInpt" class="form-control mb-3">
+    <input type="text" placeholder="Username" id="userInpt" class="form-control mb-3">
+    <input type="password" placeholder="Password" id="passInpt" class="form-control mb-3" name="psw" required>
+    <button href= "landing.html" type="text" id="subbtn" class="btn btn-outline-primary mb-3 w-100">Sign Up</button>
+    <a href="index.html" class="badge badge-secondary py-1 w-100">Already have an account?</a>
+</div>  
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
+    
+   
+    const firebaseConfig = {
+      apiKey: "AIzaSyBYjgxoJ34pGErycIRbCxqMJBREnstmIpc",
+      authDomain: "retake-assessment.firebaseapp.com",
+      databaseURL: "https://retake-assessment-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "retake-assessment",
+      storageBucket: "retake-assessment.appspot.com",
+      messagingSenderId: "352369680811",
+      appId: "1:352369680811:web:d81867ea374d7a2c88f2ee",
+      measurementId: "G-DGX08LJJ9W"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import {getDatabase, ref, set, child, get,update, remove } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-database.js";
+    
+    const db = getDatabase();
+
+            const username = document.getElementById('userInpt');
+            const password = document.getElementById('passInpt');
+            const firstname = document.getElementById('fnameInpt');
+            const lastname = document.getElementById('lnameInpt');
+            const contact = document.getElementById('contInpt');
+            const email = document.getElementById('emailInpt');
+            const submit = document.getElementById('subbtn');
+
+            function EmptySpaces(str){
+                return str === null || str.match (/^ *$/) !==null;
+            }      
+            function Validate(){
+                let fnameregis = /^[a-zA-z\s]+$/;
+                let lnameregis = /^[a-zA-z\s]+$/;
+                let emailregis = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook)\.com$/;
+                let userregis = /^[a-zA-Z0-9]{5,}$/;
+
+                if(EmptySpaces(username.value) || EmptySpaces(password.value) || EmptySpaces(firstname.value) || EmptySpaces(lastname.value) || EmptySpaces(contact.value) || EmptySpaces(email.value)){
+                    alert("Do not leave any empty field");
+                    return false;
+                }
+                if(!fnameregis.test(name.value)){
+                    alert("The first name should only contain alphabets!");
+                    return false;
+                }
+                if(!lnameregis.test(name.value)){
+                    alert("The last name should only contain alphabets!");
+                    return false;
+                }
+                if(!emailregis.test(email.value)){
+                    alert("Enter a valid Email!");
+                    return false;
+                }
+                if(!userregis.test(username.value)){
+                    alert("Username can only be alphanumer\n username must be atleast 5 characters \n username cannot containe less than 5 characters");
+                    return false;
+                }
+                    return true;
+                }
+            function CreateUser(){
+                if(!Validate()){
+                    return;
+                }
+                    const dbref = ref(db);
+                
+                get(child(dbref, "UsersList/" + username.value)).then((snapshot)=>{
+                    if(snapshot.exists()){
+                        alert("Account already Existed");
+                    }
+                    else{
+                        set(ref(db, "UsersList/" + username.value),
+                    {
+                        fname: firstname.value,
+                        lname: lastname.value,
+                        email: email.value,
+                        contact: contact.value,
+                        username: username.value,
+                        password: encPassword(),
+                    })
+                        .then(()=>{
+                            alert("User created Successfully")
+                    })
+                        .catch((error)=>{
+                            alert("error"+error);
+                        })
+                    }
+                })
+            }
+            function encPassword(){
+                var pass12 = CryptoJS.AES.encrypt(password.value, password.value);
+                return pass12.toString();
+            }
+                submit.addEventListener('click', CreateUser);
+      </script>
+    </script>
+</body>
+</html>
